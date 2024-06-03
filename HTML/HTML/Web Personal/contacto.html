@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Ejemplo de HTML5">
+        <meta name="keywords" content="HTML5, CSS3, JavaScript">
+        <title>Proyecto Página Personal</title>
+        <link rel="stylesheet" type="text/css" href="./Estilos/estilos.css"/>
+        <script src="scripts/script.js"></script>
+    </head>
+
+    <body class="contacto">
+        <hgroup class="contacto">
+            <header>
+                <img src="./img/logo.png">
+            </header>
+        <nav>
+            <ul>
+                <li><a href="Index.html" class="link">Home</a></li>
+                <li><a href="Biografia.html" class="link">Biografía</a></li>
+                <li><a href="portfolio.html" class="link">Portfolio</a></li>
+                <li><a href="contacto.html" class="posicionado link">Contacto</a></li>
+            </ul>
+        </nav>
+        <hr>
+        </hgroup>
+        <div class="contenedor_contacto">
+            <form action=""> <!--Envía el texto a un archivo llamado info_contacto.php-->
+          
+              <label for="primer_nombre" id="primer_nombre" >Nombre</label>
+              <input type="text" id="primer_nombre_input" name="nombre" placeholder="Tu nombre...">
+          
+              <label for="primer_apellido" id="primer_apellido" >Apellido</label>
+              <input type="text" id="primer_apellido_input" name="apellido" placeholder="Tu apellido...">
+          
+              <label for="pais" id="pais" >País</label>
+              <select id="pais_input" name="país">
+                <option value="españa">España</option>
+                <option value="venezuela">Venezuela</option>
+                <option value="peru">Perú</option>
+                <option value="argentina">Argentina</option>
+                <option value="ecuador">Ecuador</option>
+                <option value="portugal">Portugal</option>
+                <option value="peru">Perú</option>
+              </select>
+          
+              <label for="asunto" id="asunto" >Asunto</label>
+              <textarea id="asunto_input" name="asunto" placeholder="Contenido del mensaje..." style="height:100px"></textarea>
+          
+              <button onclick="enviar_contacto()" class="boton_enviar">Enviar</button>          
+            </form>
+            <footer>
+                <hr>
+                <div>
+                    <ul class="footer">
+                        <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                            <img src="./img/instagram.png">
+                        </a></li>
+                        <li><a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+                            <img src="./img/twitter.png">
+                        </a></li>
+                        <li><a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                            <img src="./img/linkedin.png">
+                        </a></li>
+                        <li><a href="https://www.github.com" target="_blank" rel="noopener noreferrer">
+                            <img src="./img/github.png">
+                        </a></li>
+                    </ul>
+                </div>
+            </footer>
+          </div>
+    </body>
+</html>

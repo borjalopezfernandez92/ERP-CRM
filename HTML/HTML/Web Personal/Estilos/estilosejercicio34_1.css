@@ -1,0 +1,86 @@
+h1 {
+     color: teal;
+} 
+
+h2 {
+    color: blue;
+}
+
+strong {
+    font-weight: bold;
+}
+
+p strong {
+    color:red;
+}
+
+.destacado {
+    color: orange;
+}
+
+a {
+    text-decoration: underline;
+    color: red;
+}
+
+a em {
+    color: blue;
+}
+em {
+    text-decoration: wavy;
+}
+
+span[class="especial"] {
+    color: purple;
+}
+
+span[id="especial"] {
+    color: fuchsia;
+}
+
+caption {
+    color: blue;
+    font-weight: bold;
+}
+
+tfoot th[scope="col"] {
+    color: red;
+    font-weight: bold;
+}
+
+thead th[scope="col"] {
+    color: orange;
+    font-weight: bold;
+}
+
+td {
+    color: green;
+}
+
+td strong{
+    color: orange;
+}
+
+table, th, td {
+    border: 2px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+th[scope="row"] {
+    color:red;
+    font-weight: bold;
+}
+
+th[class="especial"] {
+    color: orange;
+    font-weight: bold;
+}
+
+div[id="adicional"] {
+    color: olive;
+}
+
+div[id="adicional"] a{
+    color: green;
+}

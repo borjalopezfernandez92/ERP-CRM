@@ -1,0 +1,150 @@
+/******************************************************************* General*/
+
+
+body {
+    background-color: rgb(102, 102, 102);
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    margin: 5px;
+    padding: 10px;
+    position: relative;
+    flex-direction: column;
+}
+
+
+a {
+    color: rgb(199, 144, 247);
+    font-size: 20px;
+}
+
+a.link:hover{
+    color:rgb(222, 189, 250);
+}
+
+div.seccion_principal {
+    display: flex;
+    background-color: rgb(65, 65, 65) ;
+    padding: 20px;
+    border-radius: 55px;
+    justify-content: center;
+    min-height: 300px;
+}
+
+
+
+/******************************************************************* Portfolio*/
+
+.portfolio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px
+}
+
+.portada {
+    width: 600px;
+}
+
+.portada_cuadro {
+    width: 400px;
+}
+
+
+/******************************************************************* Navbar*/
+
+
+
+nav ul {
+    list-style-type: none; /* Removes the default bullet points */
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+a.posicionado {
+    background-color: rgb(0, 110, 79);
+    border-radius: 55px;
+    padding: 10px;
+    width: 200px;
+    
+}
+
+
+/******************************************************************* Header*/
+
+header {
+    display:flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+h1, h2 {
+    color: rgb(0, 214, 154);
+    font-family: "castellar", "Mexcellent";
+    text-align: center;
+}
+
+p, blockquote, footer {
+    color: rgb(223, 186, 255);
+    font-size: 18px;
+}
+
+/******************************************************************* Contact Form*/
+
+option, .selected-option {
+    color: rgb(225, 194, 251);
+}
+
+body.contacto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+input {
+    display: flex;
+    text-align: center;
+}
+
+select {
+    text-align: center;
+}
+
+textarea {
+    text-align: center;
+}
+
+.boton_enviar {
+    color: rgb(225, 194, 251);
+    background-color: rgb(102, 102, 102);
+}
+
+form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(65, 65, 65) ;
+    border-radius: 55px;
+    padding: 10px;
+}
+
+div.contenedor_contacto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: rgb(225, 194, 251);
+}
+
+/******************************************************************* Footer*/
+
+ul.footer {
+    list-style-type: none; /* Removes the default bullet points */
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+}
