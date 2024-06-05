@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios JS</title>
+</head>
+<body>
+    <h2>38_2</h2>
+    <button onclick="numero_peque()"> Numero más pequeño</button><br>
+    <button onclick="letras_en_frase()">Cantidad de veces que aparece tu letra.</button><br>
+    <button onclick="suma_resta()">Suma o resta de dos reales.</button><br>
+    <button onclick="user_pass()">Comprueba usuario y contraseña.</button><br>
+    <button onclick="letra_magica()"> Descubre qué esconden unas letras.</button><br>
+    <button onclick="siete_palabras()">Ordena siete palabras.</button><br>
+    <hr>
+    <h2>39_1</h2>
+    <button onclick="numero_cifras()">Número de cifras de un entero.</button><br>
+    <button onclick="cuenta_asteriscos()">Secuencia de asteriscos.</button><br>
+    <button onclick="cadena()">Cadena de caracteres.</button><br>
+    <button onclick="triangulo_asteriscos()">Pirámide de asteriscos.</button><br>
+
+    <h2>39_2</h2>
+<!-- Se solicita:
+Número de enlaces de la página
+Dirección a la que enlaza el penúltimo enlace
+Numero de enlaces que enlazan a http://prueba
+Número de enlaces del tercer párrafo
+-->
+    <p>Lorem ipsum dolor sit amet, <a href="http://prueba">consectetuer adipiscing elit</a>. Sed 
+        mattis enim vitae orci. Phasellus libero. Maecenas nisl arcu, consequat congue, commodo nec,
+        commodo ultricies, turpis. Quisque sapien nunc, posuere vitae, rutrum et, luctus at, pede.
+        Pellentesque massa ante, ornare id, aliquam vitae, ultrices porttitor, pede. Nullam sit amet
+        nisl elementum elit convallis malesuada. Phasellus magna sem, semper quis, faucibus ut,
+        rhoncus non, mi. <a href="http://prueba2">Fusce porta</a>. Duis pellentesque, felis eu
+        adipiscing ullamcorper, odio urna consequat arcu, at posuere ante quam non dolor. Lorem ipsum
+        dolor sit amet, consectetuer adipiscing elit. Duis scelerisque. Donec lacus neque, vehicula
+        in, eleifend vitae, venenatis ac, felis. Donec arcu. Nam sed tortor nec ipsum aliquam
+        ullamcorper. Duis accumsan metus eu urna. Aenean vitae enim. Integer lacus. Vestibulum
+        venenatis erat eu odio. Praesent id metus.</p>
+        <p>Aenean at nisl. Maecenas egestas dapibus odio. Vestibulum ante ipsum primis in faucibus
+        orci luctus et ultrices posuere cubilia Curae; Proin consequat auctor diam. <a
+        href="http://prueba">Ut bibendum blandit est</a>. Curabitur vestibulum. Nunc malesuada
+        porttitor sapien. Aenean a lacus et metus venenatis porta. Suspendisse cursus, sem non dapibus
+        tincidunt, lorem magna porttitor felis, id sodales dolor dolor sed urna. Sed rutrum nulla
+        vitae tellus. Sed quis eros nec lectus tempor lacinia. Aliquam nec lectus nec neque aliquet
+        dictum. Etiam <a href="http://prueba3">consequat sem quis massa</a>. Donec aliquam euismod
+        diam. In magna massa, mattis id, pellentesque sit amet, porta sit amet, lectus. Curabitur
+        posuere. Aliquam in elit. Fusce condimentum, arcu in scelerisque lobortis, ante arcu
+        scelerisque mi, at cursus mi risus sed tellus.</p>
+        <p>Donec sagittis, nibh nec ullamcorper tristique, pede velit feugiat massa, at sollicitudin
+        justo tellus vitae justo. Vestibulum aliquet, nulla sit amet imperdiet suscipit, nunc erat
+        laoreet est, a <a href="http://prueba">aliquam leo odio sed sem</a>. Quisque eget eros
+        vehicula diam euismod tristique. Ut dui. Donec in metus sed risus laoreet sollicitudin. Proin
+        et nisi non arcu sodales hendrerit. In sem. Cras id augue eu lorem dictum interdum. Donec
+        pretium. Proin <a href="http://prueba4">egestas</a> adipiscing ligula. Duis iaculis laoreet
+        turpis. Mauris mollis est sit amet diam. Curabitur hendrerit, eros quis malesuada tristique,
+        ipsum odio euismod tortor, a vestibulum nisl mi at odio. <a href="http://prueba5">Sed non
+        lectus non est pellentesque</a> auctor.</p>
+
+
+    <button onclick="enlaces_pagina()">¿Cuántos enlaces hay en esta página?</button><br>
+    <button onclick="direccion_penultimo()">¿Cuál es la dirección del penúltimo enlace?</button>
+    <button onclick="enlaces_tercer_parrafo()">¿Cuántos enlaces hay en el tercer párrafo?</button>
+    <button onclick="enlaces_prueba()">¿Cuántos enlaces enlanzan a prueba?</button>
+
+    <h2>39_3</h2>
+
+    <p id="texto">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis enim vitae
+        orci. Phasellus libero. Maecenas nisl arcu, consequat congue, commodo nec, commodo ultricies,
+        turpis. Quisque sapien nunc, posuere vitae, rutrum et, luctus at, pede. Pellentesque massa
+        ante, ornare id, aliquam vitae, ultrices porttitor, pede. <span id="adicional"
+        class="oculto">Nullam sit amet nisl elementum elit convallis malesuada. Phasellus magna sem,
+        semper quis, faucibus ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper,
+        odio urna consequat arcu, at posuere ante quam non dolor. Lorem ipsum dolor sit amet,
+        consectetuer adipiscing elit. Duis scelerisque. Donec lacus neque, vehicula in, eleifend
+        vitae, venenatis ac, felis. Donec arcu. Nam sed tortor nec ipsum aliquam ullamcorper. Duis
+        accumsan metus eu urna. Aenean vitae enim. Integer lacus. Vestibulum venenatis erat eu odio.
+        Praesent id metus.</span>
+        </p>
+        <a id="enlace1" href="#" onclick="muestra();">Seguir leyendo</a> <br /> 
+        <a id="enlace2" href="#" class="oculto">Atrás</a> <br />
+
+<script src="./Ejercicios_JS.js"></script>
+
+</body>
+</html>
