@@ -10,6 +10,7 @@ function get_dog() {
             json => {
             let imgUrl = json.message;
             let imageElement = document.getElementById("img_dog");
+            // alert(json.substr(31,56)); < revisar esto (string class, substring) para lo de las razas
             storageDog++;
             imageElement.src = imgUrl;
             localStorage.setItem('dogName'+storageDog, imgUrl)
