@@ -1,0 +1,33 @@
+body {
+    justify-content: flex;
+    justify-content: center;
+    align-items: center;
+}   
+#caja_random, .cuadricula {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border: 10px solid black;
+}
+
+.cuadricula {
+    flex-wrap: wrap;
+}
+
+
+.div_principal {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 1920px;
+}
+
+img {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+div {
+    display: flex;
+}
+
