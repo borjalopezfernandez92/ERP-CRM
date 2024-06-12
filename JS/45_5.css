@@ -2,16 +2,31 @@ body {
     justify-content: flex;
     justify-content: center;
     align-items: center;
-}   
-#caja_random, .cuadricula {
+}
+
+#caja_random {
     display:flex;
     align-items: center;
     justify-content: center;
+}
+
+#caja_random {
     border: 10px solid black;
+}
+
+#cuad_principal{
+    border: 10px solid black;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .cuadricula {
     flex-wrap: wrap;
+    border: 10px solid black;
+    width: 300px;
+    height: 300px;
+    color: white;
 }
 
 
@@ -19,7 +34,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    max-width: 1920px;
+    border: 10px solid black;
+    max-height: 800px;
 }
 
 img {
@@ -29,5 +45,6 @@ img {
 
 div {
     display: flex;
+    max-height: 800px;
 }
 

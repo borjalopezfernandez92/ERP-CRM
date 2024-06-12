@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./45_5.css">
     <title>45_5</title>
+    <script src="./45_5.js" defer></script> <!-- El defer hace que no lo ejecute hasta que se cargue todo lo demás-->
 </head>
 <body>
+    <div id="contenedor">
     <div id="caja_random">
         <img id="img_dog" src=""></img>
         <button onclick="get_dog()">Random</button>
     </div>
 
-    <div id="cuad_principal" class="cuadricula">
+    <div id="cuad_principal">
         <div class="cuadricula" id="caja_1">
             <img id="cuad1" src=""></img>
         </div>
@@ -74,10 +76,9 @@
             <img id="cuad20" src=""></img>        
         </div>
     </div>
-
+    </div>
 
     
     
-    <script src="./45_5.js"></script>
 </body>
 </html>
