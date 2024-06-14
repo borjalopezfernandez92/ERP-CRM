@@ -1,11 +1,9 @@
 
     // Import the functions you need from the SDKs you need
     
-    // Immport funcionales
-    //import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-    //import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc  } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js';
+    // Eliminado
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
-    import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc  } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js';
+    import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc, updateDoc  } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js';
 
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -25,11 +23,9 @@
     export const db = getFirestore(app);
     export const querySnapshot = await getDocs(collection(db, "Desayunos"));
 
-    function createCard(id, task) {
-        //if (containerDiv){
-        // var containerDiv = document.getElementsByClassName('containerDiv')[0];
-        // containerDiv.appendChild(headerDiv);
-        // containerDiv.appendChild(principalDiv);
+
+
+    function createCard(id, bFast) {
         //<div class="card text-white bg-info mb-6  offset-md-4" style="max-width: 20rem;">
         const principalDiv = document.createElement('div');
         principalDiv.setAttribute("class", "card bg-light mb-3");
@@ -40,6 +36,8 @@
         const contentDiv = document.createTextNode("Id: " + id);
         headerDiv.setAttribute("class", "card-header");
         
+        principalDiv.appendChild(headerDiv);
+
         headerDiv.appendChild(contentDiv);
         principalDiv.appendChild(headerDiv);
 
@@ -47,51 +45,42 @@
         // <div class="card-body">
         const bodyDiv = document.createElement('div');
         const pTitle = document.createElement("p");
-        const pTitleText = document.createTextNode("Title: " + task.title);
+        const pTitleText = document.createTextNode("Nombre: " + bFast.nombre);
         const hr = document.createElement('hr');
         const pDesc = document.createElement("p");
-        const pDescText = document.createTextNode("Description: " + task.description);
-        
+        const pDescText = document.createTextNode("Descripción: " + bFast.descripcion);
+        const bfPriceTitle = document.createTextNode("Precio: " + bFast.precio)
+
+
         pTitle.appendChild(pTitleText);
         bodyDiv.appendChild(pTitle);
         bodyDiv.appendChild(hr);
         pDesc.appendChild(pDescText);
         bodyDiv.appendChild(pDesc);
+        bodyDiv.appendChild(bfPriceTitle);
         bodyDiv.appendChild(hr);
         
         
         var input = document.createElement("input");
         input.type = "button";
-        input.value = "Borrar Tarea";
+        input.value = "Borrar Desayuno";
         input.setAttribute("name", "delete");
         input.setAttribute("id",id);
         bodyDiv.appendChild(input);
     
         // editar tarea
-        var inputDelete = document.createElement("input");
-        inputDelete.type = "button";
-        inputDelete.value = "Editar Tarea";
-        inputDelete.setAttribute("name", "edit");
-        inputDelete.setAttribute("id", id);
-        bodyDiv.appendChild(inputDelete);
+        var inputEdit = document.createElement("input");
+        inputEdit.type = "button";
+        inputEdit.value = "Editar Desayuno";
+        inputEdit.setAttribute("name", "edit");
+        inputEdit.setAttribute("id", id);
+        bodyDiv.appendChild(inputEdit);
 
         principalDiv.appendChild(bodyDiv);
 
         document.body.appendChild(principalDiv);
         const br = document.createElement("br");
-        document.body.appendChild(br);
-
-
-
-        //}else{
-        //    console.log("probando else");
-        //    var containerDiv = document.createElement('div');
-        //    containerDiv.setAttribute("class", "containerDiv");
-        //    containerDiv.style = "display: flex; flex-direction: row; flex-wrap: wrap;"
-        //    document.body.appendChild(containerDiv);
-        //}
-
-        
+        document.body.appendChild(br);        
     }
 
     export function getTasks() {
@@ -109,9 +98,9 @@
 
         return result;
     }
-    export async function insertTask(task) {
-        await setDoc(doc(db, "Desayunos", generateRandomIdTask(20)), task);
-        alert("Insertada la tarea: "+task.title);
+    export async function insertTask(bFast) {
+        await setDoc(doc(db, "Desayunos", generateRandomIdTask(20)), bFast);
+        alert("Insertado el desayuno: "+bFast.nombre);
         location.reload();
     }
 
@@ -119,3 +108,12 @@
         await deleteDoc(doc(db, "Desayunos", id));   
         alert("Borrada la tarea: "+id);
     }
+
+    // Function para update.
+
+    export async function updateTask(id, taskDetails) {
+        await updateDoc(doc(db, "Desayunos", id), taskDetails);
+        alert("Desayuno actualizado: " + id);
+        location.reload(); // Recargamos la página para reflejar los cambios.
+    }
+    

@@ -13,22 +13,24 @@
 
     <body>
         <div class="card text-white bg-info mb-6  offset-md-4" style="max-width: 20rem;">
-            <div class="card-header">Formulario Tareas</div>
+            <div class="card-header">Formulario Desayunos</div>
             <div class="card-body">
                 <form id="task-form">
-                    <input type="text" id="task-title" class="form-control" placeholder="Título de la tarea"
+                    <input type="text" id="bfast-name" class="form-control" placeholder="Título del desayuno"
                         autofocus>
-                    <textarea id="task-description" class="form-control" placeholder="Descripción de la tarea" cols="10"
+                    <input type="text" id="bfast-price" class="form-control" placeholder="Precio del desayuno"
+                    autofocus>
+                    <textarea id="bfast-description" class="form-control" placeholder="Descripción del desayuno" cols="10"
                         rows="5"></textarea>
                     <br>
 
-                    <input type="submit" value="Enviar Tarea" class="btn btn-lg btn-primary" id="task-button">
+                    <input type="submit" value="Nuevo Desayuno" class="btn btn-lg btn-primary" id="bfast-button">
                 </form>
 
             </div>
         </div>
         <br>
-        <h3>Listado de tareas existente</h3>
+        <h3>Listado de desayunos actuales</h3>
         <script src="utils.js" type="module" defer></script>
         <script src="index.js" type="module" defer></script>
     </body>
