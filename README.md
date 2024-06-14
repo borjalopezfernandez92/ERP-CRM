@@ -5,3 +5,4 @@
 | [DataBase](./DBs)                                        |
 | [HTML](./HTML)                                           |
 | [JavaScript](./JS)                                       |
+| [Python](./PY)                                           |
