@@ -79,3 +79,43 @@ print(f"El peso del pedido es {calc} gramos.")
 # Imagina que acabas de abrir una nueva cuenta de ahorros que te ofrece el 4% de interés al año. Estos ahorros debido a intereses, que no se cobran hasta finales de año, se te añaden al balance final de tu cuenta de ahorros. Escribir un programa que comience leyendo la cantidad de dinero depositada en la cuenta de ahorros, introducida por el usuario. Después el programa debe calcular y mostrar por pantalla la cantidad de ahorros tras el primer, segundo y tercer años. Redondear cada cantidad a dos decimales.
 
 ahorros = int(print("Introduce la cantidad de dinero en la cuenta de ahorros."))
+
+
+################### Bucles
+
+# Ejercicio 11
+# Escribir un programa que pida al usuario una palabra y luego muestre por pantalla una a una las letras de la palabra introducida empezando por la última.
+print("[Bucles] Ejercicio 11: ")
+
+pal14 = input("Introduce una palabra: ")
+pal_inv = pal14[::-1]
+
+for i in pal_inv:
+    print(i)
+
+# Ejercicio 13
+# Escribir un programa que muestre el eco de todo lo que el usuario introduzca hasta que el usuario escriba “salir” que terminará.
+
+print("[Bucles] Ejercicio 13: ")
+
+while True:
+    pal15 = input("Habla contigo mismo, o introduce 'salir' para finalizar: ")
+    if pal15 == "salir": 
+            print("Saliendo de la ejecución.")
+            break
+    else:
+        print(pal15)
+
+
+################### listas/tuplas
+
+# Ejercicio 9
+# Escribir un programa que pida al usuario una palabra y muestre por pantalla el número de veces que contiene cada vocal.
+
+palabra = input("Por favor, ingresa una palabra: ")
+vocales = 'aeiou'
+conteo_vocales = [palabra.lower().count(vocal) for vocal in vocales]
+
+print("Conteo de vocales:")
+for vocal, conteo in zip(vocales, conteo_vocales):
+    print(f"{vocal}: {conteo}")
