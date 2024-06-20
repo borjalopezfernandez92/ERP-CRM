@@ -30,7 +30,7 @@ buttonsCardD.forEach(element => {
     })
 });
 
-// Botón de editar task WIP
+// Botón de editar task
 const buttonsCardE = document.getElementsByName("edit");
 buttonsCardE.forEach(element => {
     element.addEventListener("click", async () => {
