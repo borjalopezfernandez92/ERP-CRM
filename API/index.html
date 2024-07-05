@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js"></script>
+</head>
+<body>
+    <input type="button" onclick="getAll()" value="GET ALL">
+    <form action="http://127.0.0.1:5000/" method="GET">
+        <input type="submit" value="GET HOME">
+    </form>
+    <form action="http://127.0.0.1:5000/insert" method="POST">
+        <label for="">Nombre: </label>
+        <input type="text" name="nombre" value="">
+        <input type="submit" value="POST">
+    </form>
+</body>
+</html>
