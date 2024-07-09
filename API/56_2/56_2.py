@@ -1,5 +1,4 @@
-
-import flask
+import flask, psycopg2
 from flask import request, jsonify
 from flask_cors import CORS, cross_origin
 
@@ -8,16 +7,17 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config["DEBUG"] = True
 
-empleados = [
-   {'id': 0,
-	'nombre': 'Davinia',
-	'apellidos': 'de la Rosa',
-	'trabaja_desde': '5'},
-    {'id': 1,
-	'nombre': 'Maria',
-	'apellidos': 'Ramirez',
-	'trabaja_desde': '4'},
-]
+
+# Establishing the connection
+connection = psycopg2.connect(user="postgres",  
+                            password="clase23",
+                            host="127.0.0.1",
+                            port="5432",
+                            database="empresa")
+cursor = connection.cursor()
+connection.commit()
+cursor.close()
+connection.close()
 
 
 # Ruta por defecto
@@ -31,7 +31,15 @@ def home():
 @app.route('/all', methods=['GET'])
 @cross_origin()
 def api_all():
-   return jsonify(empleados)
+    conn = psycopg2.connect(database="empresa", user="postgres", password="clase23", host="localhost", port="5432")
+        
+    cursor = conn.cursor()
+    cursor.execute('''SELECT * FROM empleados''')
+    data = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return jsonify(data)
+
 
 ############################################################ 2
 ## /all/id (GET): Devuelve un empleado por id
