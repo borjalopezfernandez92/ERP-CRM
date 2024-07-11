@@ -1,5 +1,5 @@
-import flask, psycopg2
-from flask import request, jsonify
+import psycopg2
+from flask import request, jsonify, flask
 from flask_cors import CORS, cross_origin
 
 app = flask.Flask(__name__)
@@ -7,15 +7,6 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config["DEBUG"] = True
 
-
-# Establishing the connection
-connection = psycopg2.connect(user="postgres",  
-                            password="clase23",
-                            host="127.0.0.1",
-                            port="5432",
-                            database="empresa")
-cursor = connection.cursor()
-connection.commit()
 
 
 # Ruta por defecto
@@ -29,14 +20,12 @@ def home():
 @app.route('/all', methods=['GET'])
 @cross_origin()
 def api_all():
-    conn = psycopg2.connect(database="empresa", user="postgres", password="clase23", host="localhost", port="5432")
-        
-    cursor = conn.cursor()
-    cursor.execute('''SELECT * FROM empleados''')
-    data = cursor.fetchall()
-    cursor.close()
-    conn.close()
-    return jsonify(data)
+    conexion = connection()
+    cursor = connection.cursor()
+    postgres_select_query = ''' SELECT * FROM empleados;'''
+    cursor.execute(postgres_select_query)
+    conexion.commit()
+    print("Empleados en la base de datos")
 
 
 ############################################################ 2
@@ -44,20 +33,9 @@ def api_all():
 @cross_origin()
 @app.route('/all/<int:id>', methods=['GET'])
 def get_empleado(id):
-    conn = psycopg2.connect(database="empresa", user="postgres", password="clase23", host="localhost", port="5432")
-        
-    cursor = conn.cursor()
-    cursor.execute('''SELECT * FROM empleados WHERE id = %s''', (id,))
-    data = cursor.fetchone()
-    
-    if data:
-        return jsonify({"id": data[0], "nombre": data[1], "apellidos": data[2], "trabaja_desde": data[3]})
-    else:
-        return jsonify({'message': 'Empleado not found'}), 404
-    cursor.close()
-    conn.close()
     # Filtra la lista de empleados para encontrar su ID
-  
+    empleado = next((e for e in empleados if e['id'] == id), None)
+    
     if empleado:
         return jsonify(empleado), 200
     else:
@@ -68,12 +46,23 @@ def get_empleado(id):
 @cross_origin()
 @app.route('/all/insert', methods=['POST'])
 def post_empleado():
+    
+    # Parsear el JSON del request
     data = request.get_json()
-    cursor.execute('''INSERT INTO empleados (nombre, apellidos, trabaja_desde) VALUES (%s, %s, %s) RETURNING id;''', (data['nombre'], data['apellidos'], data['trabaja_desde']))
-    id = cursor.fetchone()[0]
-    conn.commit()
-    return jsonify({"message": "Empleado implementado con éxito", "empleado": {"id": id, "nombre": data['nombre'], "apellidos": data['apellidos'], "trabaja_desde": data['trabaja_desde']} }), 201
 
+    # Extraer los campos necesarios del JSON
+    nuevo_empleado = {
+       'id': len(empleados) +1, #Asumiendo que los Ids incrementan secuancialmente.
+       'nombre': data.get('nombre'),
+       'apellidos': data.get('apellidos'),
+       'trabaja_desde': data.get('trabaja_desde')
+    }
+
+    # Agregar el nuevo empleado a la lista de empleados
+    empleados.append(nuevo_empleado)
+
+    # Devuelve un mensaje con los datos implementados
+    return jsonify({"message": "Empleado implementado con éxito", "empleado": nuevo_empleado}), 201
 
 
 ############################################################ 4

@@ -1,31 +1,36 @@
 //Mostrar datos de empleados en tabla
 fetch('http://127.0.0.1:5000/all')
-    .then(empleados => empleados.json())
-    .then(data => {
-        const container = document.getElementById('employee-container');
+.then(response => response.json())
+.then(data => {
+    const container = document.getElementById('employee-container');
+    const table = document.createElement('table');
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
 
-        let tHead = document.createElement("thead");
-        let headerRow = document.createElement('tr');
-        Object.keys(data[0]).forEach(key => {
-            let th = document.createElement('th');
-            th.textContent = key.charAt(0).toUpperCase() + key.slice(1);
-            headerRow.appendChild(th);
-        });
-        tHead.appendChild(headerRow);
-        container.appendChild(tHead);
-
-        let tBody = document.createElement('tbody');
-        data.forEach(employee => {
-            let row = document.createElement('tr');
-            Object.values(employee).forEach(value => {
-                let cell = document.createElement('td');
-                cell.textContent = value;
-                row.appendChild(cell);
-            });
-            tBody.appendChild(row);
-        });
-        container.appendChild(tBody);
+    ['ID', 'Nombre', 'Apellidos', 'Trabaja Desde'].forEach(headerText => {
+        const th = document.createElement('th');
+        th.textContent = headerText;
+        headerRow.appendChild(th);
     });
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    data.forEach(employee => {
+        const row = document.createElement('tr');
+        Object.values(employee).forEach(value => {
+            const td = document.createElement('td');
+            td.textContent = value;
+            row.appendChild(td);
+        });
+        tbody.appendChild(row);
+    });
+    table.appendChild(tbody);
+
+    container.innerHTML = ''; // Limpia el contenido existente
+    container.appendChild(table);
+
+});
 
 
 // Buscar empleado por ID
