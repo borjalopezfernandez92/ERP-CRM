@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>56_2</title>
+    <link rel="stylesheet" href="./56_2.css">
+</head>
+<body>
+    <div id="employee-container"></div>
+    <h2>Buscar Empleado por ID</h2>
+    <form id="employeeForm">
+        <label for="employeeId">ID de empleado: </label>
+        <input type="number" id="employeeId" name="employeeId" required>
+        <button onclick="getEmployeeById()">Buscar</button>
+    </form>
+    <div id="result"></div>
+
+    <h2>Insertar nuevo empleado</h2>
+    <form id="newEmployee">
+        <input type="text" id="newEmployeeName" placeholder="Nombre del empleado" autofocus>
+        <br>
+        <input type="text" id="newEmployeeSurname" placeholder="Apellido del empleado"autofocus>
+        <br>
+        <input type="text" id="newEmployeeWork" placeholder="Hora de entrada al trabajo"autofocus>
+        <br>
+        <button type ="button" onclick="empleado_insert()">Insertar</button>
+        <script src="./56_2.js"></script>
+
+    <h2>Eliminar un empleado</h2>
+    <form id="deleteEmployee">
+        <input type="text" id="inputDeleteEmployee" placeholder="ID del empleado a eliminar" autofocus>
+        <br>
+        <button type ="button" onclick="empleado_delete()">Eliminar</button>
+
+    <h2>Actualizar nombre de un empleado</h2>
+    <form id="updateeEmployee">
+        <input type="text" id="updateEmployeeId" placeholder="ID del empleado a actualizar" autofocus>
+        <br>
+        <input type="text" id="updateEmployeeName" placeholder="Nuevo nombre del empleado" autofocus>
+        <br>
+        <button type ="button" onclick="empleado_update()">Actualizar</button>
+
+</body>
+</html>

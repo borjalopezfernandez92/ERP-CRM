@@ -1,102 +1,200 @@
-
+import psycopg2
 import flask
 from flask import request, jsonify
 from flask_cors import CORS, cross_origin
+
+def select_all():
+    resultado_dic = {} ## diccionario vacío para agrupar datos de los libros a continuación.
+
+    try:
+        conn = psycopg2.connect(
+            database="empresa",
+            user='postgres',
+            password='clase23',
+            host='localhost',
+            port='5432'
+        )
+        cursor = conn.cursor()
+        select_query = "select * from empleados"
+        cursor.execute(select_query)
+        empleados_resultado = cursor.fetchall() # Resultado de la consulta
+    
+
+        for row in empleados_resultado:
+            resultado_dic[row[0]] = {}
+            resultado_dic[row[0]]['id'] = row[0]
+            resultado_dic[row[0]]['nombre'] = row[1]
+            resultado_dic[row[0]]['apellidos'] = row[2]
+            resultado_dic[row[0]]['trabaja_desde'] = row[3]
+
+        print(resultado_dic)
+    
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
+
+    finally:
+        # closing database connection.
+        if conn:
+            cursor.close()
+            conn.close()
+            print("PostgreSQL connection is closed")
+    return resultado_dic
+def select_id(id):
+    resultado_dic = {} ## diccionario vacío para agrupar datos de los libros a continuación.
+
+    try:
+        conn = psycopg2.connect(
+            database="empresa",
+            user='postgres',
+            password='clase23',
+            host='localhost',
+            port='5432'
+        )
+        cursor = conn.cursor()
+        select_query = "select * from empleados"
+        cursor.execute(select_query)
+        empleados_resultado = cursor.fetchall() # Resultado de la consulta
+    
+
+        for row in empleados_resultado:
+            if id == row[0]:
+                resultado_dic[row[0]] = {}
+                resultado_dic[row[0]]['nombre'] = row[1]
+                resultado_dic[row[0]]['apellidos'] = row[2]
+                resultado_dic[row[0]]['trabaja_desde'] = row[3]
+                print(resultado_dic)
+    
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
+
+    finally:
+        # closing database connection.
+        if conn:
+            cursor.close()
+            conn.close()
+            print("PostgreSQL connection is closed")
+    return resultado_dic
+def insert_new(nombre, apellidos, trabaja_desde):
+    try:
+        conn = psycopg2.connect(
+            database="empresa",
+            user='postgres',
+            password='clase23',
+            host='localhost',
+            port='5432'
+        )
+        cursor = conn.cursor()
+        insert_query = """ INSERT INTO empleados(nombre,
+	    apellidos, trabaja_desde) 
+	    VALUES (%s,%s,%s)"""
+        data = (nombre, apellidos, trabaja_desde)
+        cursor.execute(insert_query, data)
+        conn.commit()
+        count = cursor.rowcount
+        print(count, "Inserción realizada con éxito en la tabla 'empleados'")
+    
+    
+    
+    except (Exception, psycopg2.Error) as error:
+        print("Error while fetching data from PostgreSQL", error)
+
+    finally:
+        # closing database connection.
+        if conn:
+            cursor.close()
+            conn.close()
+            print("PostgreSQL connection is closed")
+def delete_empleado(id):
+    try:
+        conn = psycopg2.connect(
+            database="empresa",
+            user='postgres',
+            password='clase23',
+            host='localhost',
+            port='5432'
+        )
+        cursor = conn.cursor()
+        sql_delete_query = """Delete from empleados\
+		where id = %s"""
+        cursor.execute(sql_delete_query, (id,))
+        conn.commit()
+        count = cursor.rowcount
+        print(count, f"Empleado con id '{id}' eliminado con éxito")
+
+    except (Exception, psycopg2.Error) as error:
+            print("Error while fetching data from PostgreSQL", error)
+
+    finally:
+            # closing database connection.
+        if conn:
+            cursor.close()
+            conn.close()
+            print("PostgreSQL connection is closed")
+def update_empleado(id, nombre):
+    try:
+        conn = psycopg2.connect(
+            database="empresa",
+            user='postgres',
+            password='clase23',
+            host='localhost',
+            port='5432'
+        )
+        cursor = conn.cursor()
+        update_query = """UPDATE empleados SET nombre = %s where id = %s"""
+        data = (nombre, id)
+        cursor.execute(update_query, data)
+        conn.commit()
+        count = cursor.rowcount
+        print(count, "Record Updated successfully ")
+
+    except (Exception, psycopg2.Error) as error:
+            print("Error while fetching data from PostgreSQL", error)
+
+    finally:
+            # closing database connection.
+        if conn:
+            cursor.close()
+            conn.close()
+            print("PostgreSQL connection is closed")
 
 app = flask.Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config["DEBUG"] = True
 
-empleados = [
-   {'id': 0,
-	'nombre': 'Davinia',
-	'apellidos': 'de la Rosa',
-	'trabaja_desde': '5'},
-    {'id': 1,
-	'nombre': 'Maria',
-	'apellidos': 'Ramirez',
-	'trabaja_desde': '4'},
-]
-
-
-# Ruta por defecto
-@app.route('/', methods=['GET'])
-@cross_origin()
-def home():
- return '''<h1>Ejercicio 56_2</h1>'''
-
-############################################################ 1 
 ## /all (GET): Devuelve todos los empleados.
-@app.route('/all', methods=['GET'])
 @cross_origin()
-def api_all():
-   return jsonify(empleados)
+@app.route('/all', methods=['GET'])
+def all():
+    resultado_dic = select_all()
+    return jsonify(resultado_dic)
 
-############################################################ 2
 ## /all/id (GET): Devuelve un empleado por id
 @cross_origin()
 @app.route('/all/<int:id>', methods=['GET'])
-def get_empleado(id):
-    # Filtra la lista de empleados para encontrar su ID
-    empleado = next((e for e in empleados if e['id'] == id), None)
-    
-    if empleado:
-        return jsonify(empleado), 200
-    else:
-        return jsonify({'message': 'Empleado not found'}), 404
-    
-############################################################ 3
+def get_id(id):
+    resultado_dic = select_id(id)
+    return jsonify(resultado_dic)
+
 ## /insert (POST): Inserta un empleado
 @cross_origin()
 @app.route('/all/insert', methods=['POST'])
-def post_empleado():
-    
-    # Parsear el JSON del request
-    data = request.get_json()
+def insert():
+    insert_new(request.json.get('nombre'), request.json.get('apellidos'), request.json.get('trabaja_desde'))
+    return jsonify({'result': 'ok'})
 
-    # Extraer los campos necesarios del JSON
-    nuevo_empleado = {
-       'id': len(empleados) +1, #Asumiendo que los Ids incrementan secuancialmente.
-       'nombre': data.get('nombre'),
-       'apellidos': data.get('apellidos'),
-       'trabaja_desde': data.get('trabaja_desde')
-    }
-
-    # Agregar el nuevo empleado a la lista de empleados
-    empleados.append(nuevo_empleado)
-
-    # Devuelve un mensaje con los datos implementados
-    return jsonify({"message": "Empleado implementado con éxito", "empleado": nuevo_empleado}), 201
-
-
-############################################################ 4
 ## /delete (DELETE): Borra un empleado
+@cross_origin()
 @app.route('/all/delete/<int:id>', methods=['DELETE'])
-@cross_origin()
+def delete(id):
+    delete_empleado(id)
+    return jsonify({"message": f"Empleado con id '{id}' eliminado con éxito"})
 
-def delete_empleado(id):
-    global empleados
-    empleado_a_eliminar = next((e for e in empleados if e['id'] == id), None)
-    if empleado_a_eliminar:
-        empleados.remove(empleado_a_eliminar)
-        return jsonify({"message": f"empleado {id} eliminado con éxito"}), 200
-    else:
-        return jsonify({"message": "Empleado no encontrado"}), 404
-   
-############################################################ 5
 ## /update/id/nombre (PUT): Actualiza el nombre de un empleado localizado por id
-
-@app.route('/all/update/<int:id>/<string:nombre>', methods=['PUT'])
 @cross_origin()
-def update_nombre_empleado(id, nombre):
-    global empleados
-    empleado_a_actualizar = next((e for e in empleados if e['id'] == id), None)
-    if empleado_a_actualizar:
-        empleado_a_actualizar['nombre'] = nombre
-        return jsonify({"message": f"Nombre del empleado {id} actualizado con éxito", "empleado": empleado_a_actualizar}), 201
-    else:
-        return jsonify({"message": "Empleado no encontrado"}), 404
-
+@app.route('/all/update/<int:id>/<string:nombre>', methods=['PUT'])
+def update(id, nombre):
+    update_empleado(id, nombre)
+    return jsonify({"result": f"Empleado con id '{id}' actualizado con éxito"})
 
 app.run()
