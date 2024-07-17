@@ -1,0 +1,39 @@
+<odoo>
+
+    <!-- Vista de Árbol -->
+    <record id="view_tree_borja_empleado" model="ir.ui.view">
+        <field name="name">borja.empleado.tree</field>
+        <field name="model">borja.empleado</field>
+        <field name="arch" type="xml">
+            <tree string="Empleados">
+                <field name="nombre"/>
+                <field name="cargo"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Vista de Formulario -->
+    <record id="view_form_borja_empleado" model="ir.ui.view">
+        <field name="name">borja.empleado.form</field>
+        <field name="model">borja.empleado</field>
+        <field name="arch" type="xml">
+            <form string="Empleado">¡
+                <sheet>
+                    <group>
+                        <field name="nombre"/>
+                        <field name="cargo"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Acción -->
+    <record id="action_borja_empleado" model="ir.actions.act_window">
+        <field name="name">Empleados</field>
+        <field name="res_model">borja.empleado</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- Menú y Submenú -->
+    <menuitem id="menu_borja_root" name="borja"/>
+    <menuitem id="menu_borja_empleado" name="Empleados" parent="menu_borja_root" sequence="1"/>
+    <menuitem id="submenu_borja_empleado" name="Empleados" parent="menu_borja_empleado" action="action_borja_empleado"/>
+</odoo>

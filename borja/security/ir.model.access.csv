@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_borja_empleado_user,access.borja.empleado.user,model_borja_empleado,,1,1,1,1
+access_borja_producto_user,access.borja.producto.user,model_borja_producto,,1,1,1,1
+access_borja_proveedor_user,access.borja.proveedor.user,model_borja_proveedor,,1,1,1,1

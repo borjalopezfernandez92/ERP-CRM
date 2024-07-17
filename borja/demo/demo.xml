@@ -1,0 +1,6 @@
+<odoo>
+    <record id="demo_empleado_1" model="borja.empleado">
+        <field name="nombre">Jose</field>
+        <field name="cargo">Encargado</field>
+    </record>
+</odoo>

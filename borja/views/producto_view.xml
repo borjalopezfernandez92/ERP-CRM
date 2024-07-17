@@ -1,0 +1,47 @@
+<odoo>
+
+    <!-- Vista de Árbol -->
+    <record id="view_tree_borja_producto" model="ir.ui.view">
+        <field name="name">borja.producto.tree</field>
+        <field name="model">borja.producto</field>
+        <field name="arch" type="xml">
+            <tree string="Productos">
+                <field name="nombre"/>
+                <field name="descripcion"/>
+                <field name="precio_unitario"/>
+                <field name="cantidad_actual"/>
+                <field name="cantidad_minima"/>
+                <field name="proveedor"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Vista de Formulario -->
+    <record id="view_form_borja_producto" model="ir.ui.view">
+        <field name="name">borja.producto.form</field>
+        <field name="model">borja.producto</field>
+        <field name="arch" type="xml">
+            <form string="Producto">¡
+                <sheet>
+                    <group>
+                        <field name="nombre"/>
+                        <field name="descripcion"/>
+                        <field name="precio_unitario"/>
+                        <field name="cantidad_actual"/>
+                	<field name="cantidad_minima"/>
+                	<field name="proveedor"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Acción -->
+    <record id="action_borja_producto" model="ir.actions.act_window">
+        <field name="name">Productos</field>
+        <field name="res_model">borja.producto</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- Menú y Submenú -->
+    <menuitem id="menu_borja_root" name="borja"/>
+    <menuitem id="menu_borja_producto" name="Productos" parent="menu_borja_root" sequence="1"/>
+    <menuitem id="submenu_borja_producto" name="Productos" parent="menu_borja_producto" action="action_borja_producto"/>
+</odoo>

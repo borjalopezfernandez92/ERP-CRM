@@ -1,0 +1,7 @@
+<odoo>
+    <record id="demo_proveedor_1" model="borja.proveedor">
+        <field name="nombre">Azucena</field>
+        <field name="contacto">Por carta</field>
+        <field name="producto">Fairy</field>
+    </record>
+</odoo>
